@@ -1,0 +1,139 @@
+Whiteboarding Independent Project:
+==================================
+
+Question #1: Turning Strings to URLs
+------------------------------------
+
+Answer without recursion:
+
+    public static string StringToURL(string str)
+    {
+      string newStr = "";
+      for(int i = 0; i < str.Length; i++)
+      {
+        if(str[i] == ' ')
+        {
+          newStr += "%20";
+          continue;
+        }
+        newStr += str[i];
+      }
+      return newStr;
+    }
+
+Answer with recursion:
+
+    public static string StringToURLRecursion(string str, int i, string newStr)
+    {
+      if (i >= (str.Length - 1))
+      {
+        return newStr;
+      }
+      if (str[i] == ' ')
+      {
+        newStr += "%20";
+      }
+      else
+      {
+        newStr += str[i];
+      }
+      return StringToURLRecursion(str, i + 1, newStr);
+    }
+
+Question #2: Array Deduping
+---------------------------
+
+Answer without recursion:
+
+    public static int[] RemoveDuplicate(int[] array)
+    {
+      int[] resultArray = new int[10];
+      int[] duplicateArray = new int[10];
+      for (int i = 0; i < array.Length; i++)
+      {
+        for (int j = i + 1; j < array.Length; j++)
+        {
+          if (array[i] == array[j])
+          {
+            duplicateArray[i] = array[i];
+          }
+        }
+        if (array[i] == duplicateArray[i])
+        {
+          continue;
+        }
+        resultArray[i] = array[i];
+      }
+      return resultArray;
+    }
+
+Answer with recursion:
+
+Question #3: Compressing Strings
+--------------------------------
+
+    public static string CompressString(string str)
+    {
+      StringBuilder sb = new StringBuilder();
+      int counter = 0;
+      for(int i = 0; i < str.Length - 1; i++)
+      {
+        if(str[i] == str[i + 1])
+        {
+          counter++;
+        }
+        else
+        {
+          sb.Append(counter + 1);
+          sb.Append (str[i]);
+          counter = 0;
+        }
+        
+      }
+      return sb.ToString();
+    }
+
+
+Question #4: Checking for Uniqueness
+------------------------------------
+
+    public static bool CheckUnique(string str)
+    {
+      Dictionary<char, int> d = new Dictionary<char, int>();
+      foreach (char character in str)
+      {
+        if (d.ContainsKey(character))
+          return false;
+        else
+          d.Add(character, 9000);
+      }
+      return true;
+    }
+
+Question #5: Array Sorting
+--------------------------
+
+    public static int[] BubbleSort(int[] arr)
+    {
+      int arrLength = arr.Length;
+      for (int i = 0; i < arrLength - 1; i++)
+      {
+        for (int j = 0; j < arrLength - i - 1; j++)
+        {
+          if (arr[j] > arr[j + 1])
+          {
+            int temp = arr[j];
+            arr[j] = arr[j + 1];
+            arr[j + 1] = temp;
+          }
+        }
+      }
+      return arr;
+    }
+
+
+
+
+
+
+
